@@ -66,6 +66,10 @@ class StringCalculatorTest {
         assertEquals(6, actualSum);
     }
 
-
+    @Test
+    public void shouldAddWhenMultipleDelimiter() {
+        int actualSum = StringCalculator.add("//[*][%]\n1*2%3");
+        assertEquals(6, actualSum);
+    }
 
 }
