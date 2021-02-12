@@ -19,8 +19,8 @@ class StringCalculatorTest {
     }
 
     @Test
-    public void shouldReturnSumForEmpty() {
-        int actualSum = StringCalculator.add("");
+    public void shouldReturnSumForNull() {
+        int actualSum = StringCalculator.add(null);
         assertEquals(0, actualSum);
     }
 }
