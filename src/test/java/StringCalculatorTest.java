@@ -29,4 +29,10 @@ class StringCalculatorTest {
         int actualSum = StringCalculator.add("1\n2,3");
         assertEquals(6, actualSum);
     }
+
+    @Test
+    public void shouldReturnSumForPrefixedDelimiter() {
+        int actualSum = StringCalculator.add("//;\n1;2");
+        assertEquals(3, actualSum);
+    }
 }
