@@ -52,6 +52,18 @@ class StringCalculatorTest {
     public void shouldIgnoreNumberGreaterThan1000() {
         int actualSum = StringCalculator.add("//;\n1001;2");
         assertEquals(2, actualSum);
-
     }
+
+    @Test
+    public void shouldAddWhenDelimiterLengthGreaterThan1() {
+        int actualSum = StringCalculator.add("//[ppp]\n1ppp2ppp3");
+        assertEquals(6, actualSum);
+    }
+
+    @Test
+    public void shouldAddWhenDelimiterContainsSpecialChar() {
+        int actualSum = StringCalculator.add("//[***]\n1***2***3");
+        assertEquals(6, actualSum);
+    }
+
 }
