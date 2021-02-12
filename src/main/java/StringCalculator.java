@@ -1,7 +1,5 @@
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class StringCalculator {
@@ -9,23 +7,14 @@ public class StringCalculator {
         if (input == null || input.isBlank()) {
             return 0;
         }
-        String regex = "[,\n]";
-        if (input.startsWith("//")) {
-            Pattern pattern = Pattern.compile(Pattern.quote("//") + "(.*?)" + Pattern.quote("\n"));
-            Matcher m = pattern.matcher(input);
-            if (m.find()) {
-                String group = m.group(1);
-                if (group.length() > 1)
-                    regex = group.substring(1, group.length() - 1);
-                else
-                    regex = group;
-                regex = regex.replaceAll("\\*", "\\\\*");//can add multiple conditions for regex
-            }
-            input = input.substring(input.indexOf('\n') + 1);
-        }
-        validateInput(input, regex);
+        InputParser inputParser = new InputParser();
+        ParsedData parsedData = inputParser.parse(input);
+        String regex = parsedData.regex;
+        String parsedInput = parsedData.input;
+
+        validateInput(parsedInput, regex);
         return Arrays
-                .stream(input.split(regex))
+                .stream(parsedInput.split(regex))
                 .mapToInt(Integer::parseInt)
                 .filter(num -> num < 1000)
                 .sum();
