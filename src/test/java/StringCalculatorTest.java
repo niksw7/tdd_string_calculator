@@ -23,4 +23,10 @@ class StringCalculatorTest {
         int actualSum = StringCalculator.add(null);
         assertEquals(0, actualSum);
     }
+
+    @Test
+    public void shouldReturnSumForMultiDelimter() {
+        int actualSum = StringCalculator.add("1\n2,3");
+        assertEquals(6, actualSum);
+    }
 }

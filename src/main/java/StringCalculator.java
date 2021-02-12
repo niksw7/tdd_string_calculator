@@ -6,7 +6,7 @@ public class StringCalculator {
             return 0;
         }
         return Arrays
-                .stream(input.split(","))
+                .stream(input.split("[,\n]"))
                 .mapToInt(Integer::parseInt)
                 .sum();
     }
