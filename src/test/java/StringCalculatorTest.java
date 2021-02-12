@@ -12,4 +12,11 @@ class StringCalculatorTest {
         assertEquals(1, actualSum);
     }
 
+    @Test
+    public void shouldReturnSumFor2Number() {
+        int actualSum = StringCalculator.add("1,2");
+        assertEquals(3, actualSum);
+    }
+
+
 }
