@@ -47,4 +47,11 @@ class StringCalculatorTest {
         Exception exception = assertThrows(RuntimeException.class, () -> StringCalculator.add("//;\n-1;-2"));
         assertEquals("Negative Number found [-1, -2]", exception.getMessage());
     }
+
+    @Test
+    public void shouldIgnoreNumberGreaterThan1000() {
+        int actualSum = StringCalculator.add("//;\n1001;2");
+        assertEquals(2, actualSum);
+
+    }
 }

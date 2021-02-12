@@ -16,6 +16,7 @@ public class StringCalculator {
         return Arrays
                 .stream(input.split(regex))
                 .mapToInt(Integer::parseInt)
+                .filter(num-> num<1000)
                 .sum();
     }
 
