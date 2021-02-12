@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class StringCalculator {
     public static int add(String input) {
@@ -7,14 +9,22 @@ public class StringCalculator {
         }
         String regex = "[,\n]";
         if (input.startsWith("//")) {
-            String prefix = input.substring(2, 3);
-            regex = prefix;
+            regex = input.substring(2, 3);
             input = input.substring(4);
         }
-
+        validateInput(input, regex);
         return Arrays
                 .stream(input.split(regex))
                 .mapToInt(Integer::parseInt)
                 .sum();
     }
+
+    private static void validateInput(String input, String regex) {
+        Collection<String> negativeNumbers = Arrays.stream(input.split(regex)).filter(num -> num.contains("-")).collect(Collectors.toList());
+        if (negativeNumbers.size() != 0) {
+            throw new RuntimeException("Negative Number found " + negativeNumbers);
+        }
+
+    }
+
 }

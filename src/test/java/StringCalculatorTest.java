@@ -35,4 +35,16 @@ class StringCalculatorTest {
         int actualSum = StringCalculator.add("//;\n1;2");
         assertEquals(3, actualSum);
     }
+
+    @Test
+    public void shouldThrowExceptionForSingleNegativeNumber() {
+        Exception exception = assertThrows(RuntimeException.class, () -> StringCalculator.add("//;\n-1;2"));
+        assertEquals("Negative Number found [-1]", exception.getMessage());
+    }
+
+    @Test
+    public void shouldThrowExceptionForMultipleNegativeNumber() {
+        Exception exception = assertThrows(RuntimeException.class, () -> StringCalculator.add("//;\n-1;-2"));
+        assertEquals("Negative Number found [-1, -2]", exception.getMessage());
+    }
 }
